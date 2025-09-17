@@ -3,7 +3,6 @@ import Header from './components/Header';
 import MapComponent from './components/MapComponent';
 import Sidebar from './components/Sidebar';
 import AreaHistoryChart from './components/AreaHistoryChart';
-import ChatComponent from './components/ChatComponent';
 import { controlPointsData, landParcelsData, areaHistoryData } from './constants/data';
 import { ControlPoint, LandParcel } from './types';
 
@@ -34,10 +33,9 @@ function App() {
   return (
     <div className="flex flex-col h-screen antialiased">
       <Header isDarkMode={isDarkMode} onToggleTheme={toggleTheme} />
-      <main className="flex-grow flex flex-col lg:flex-row gap-4 p-4 overflow-hidden">
-        {/* Main content area */}
-        <div className="flex-grow flex flex-col gap-4 w-full lg:w-2/3 relative">
-          {/* Map container */}
+      <main className="flex-grow grid grid-rows-2 lg:grid-rows-1 lg:grid-cols-3 gap-4 p-4">
+        {/* Main content area: Map */}
+        <div className="lg:col-span-2 relative flex flex-col min-h-0">
           <div className="relative flex-grow rounded-lg shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
              <MapComponent 
                 controlPoints={controlPointsData}
@@ -49,16 +47,9 @@ function App() {
           </div>
         </div>
         
-        {/* Right column with Chart and Chat */}
-        <div className="w-full lg:w-1/3 flex flex-col gap-4">
-           {/* Chart */}
-           <div className="lg:max-h-[45%] flex-shrink-0">
-             <AreaHistoryChart data={areaHistoryData} />
-           </div>
-           {/* Chat */}
-           <div className="flex-grow min-h-0">
-             <ChatComponent />
-           </div>
+        {/* Right column with Chart */}
+        <div className="lg:col-span-1 min-h-0">
+           <AreaHistoryChart data={areaHistoryData} />
         </div>
       </main>
     </div>
