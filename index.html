@@ -1,20 +1,85 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF--8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WebGIS Situ Pamulang</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
    crossorigin=""/>
   <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
     .leaflet-container {
       height: 100%;
       width: 100%;
     }
+    .pulsing-marker {
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
   </style>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            // Light Theme
+            primary: {
+              DEFAULT: '#00796b', // Teal
+              light: '#48a999',
+              dark: '#004c40',
+            },
+            secondary: {
+              DEFAULT: '#0288d1', // Sky Blue
+              light: '#5eb8ff',
+              dark: '#005b9f',
+            },
+            background: '#f0f4f8', // Light slate gray
+            surface: '#ffffff',
+            'on-surface': '#1a202c',
+            'on-surface-muted': '#718096',
+
+            // Dark Theme
+            'dark-primary': {
+              DEFAULT: '#26a69a', // Lighter Teal
+            },
+            'dark-secondary': {
+              DEFAULT: '#4fc3f7', // Lighter Sky Blue
+            },
+            'dark-background': '#1a202c', // Dark blue-gray
+            'dark-surface': '#2d3748',
+            'dark-on-surface': '#e2e8f0',
+            'dark-on-surface-muted': '#a0aec0',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        },
+      },
+    }
+  </script>
 <script type="importmap">
 {
   "imports": {
@@ -24,12 +89,13 @@
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
     "recharts": "https://aistudiocdn.com/recharts@^3.2.1",
     "leaflet": "https://aistudiocdn.com/leaflet@^1.9.4",
-    "react-leaflet": "https://aistudiocdn.com/react-leaflet@^5.0.0"
+    "react-leaflet": "https://aistudiocdn.com/react-leaflet@^5.0.0",
+    "@google/genai": "https://esm.run/@google/genai"
   }
 }
 </script>
 </head>
-<body class="bg-gray-100">
+<body class="bg-background dark:bg-dark-background text-on-surface dark:text-dark-on-surface">
   <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>
