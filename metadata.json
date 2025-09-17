@@ -1,0 +1,5 @@
+{
+  "name": "WebGIS Situ Pamulang",
+  "description": "An interactive WebGIS application for visualizing land parcel legality, boundary data, and historical changes for Situ Pamulang, Tangerang Selatan. The app provides a map-based interface to explore control points, land ownership, and the evolution of the lake's area over time.",
+  "requestFramePermissions": []
+}
